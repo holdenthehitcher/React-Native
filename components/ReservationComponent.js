@@ -29,9 +29,10 @@ class Reservation extends Component {
   render() {
     return (
       <ScrollView>
-        <View>
-          <Text>Number of Campers</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>Number of Campers</Text>
           <Picker
+            style={styles.formItem}
             selectedValue={this.state.campers}
             onValueChange={(itemValue) => this.setState({ campers: itemValue })}
           >
@@ -43,17 +44,19 @@ class Reservation extends Component {
             <Picker.Item label="6" value="6" />
           </Picker>
         </View>
-        <View>
-          <Text>Hike-In?</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>Hike-In?</Text>
           <Switch
+            style={styles.formItem}
             value={this.state.hikeIn}
             trackColor={{ true: "#5637dd", false: null }}
             onValueChange={(value) => this.setState({ hikeIn: value })}
           ></Switch>
         </View>
-        <View>
-          <Text>Date</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>Date</Text>
           <DatePicker
+            style={{ flex: 2, marginRight: 20 }}
             date={this.state.date}
             format="YYYY-MM-DD"
             mode="date"
@@ -77,7 +80,7 @@ class Reservation extends Component {
             }}
           />
         </View>
-        <View>
+        <View style={styles.formRow}>
           <Button
             onPress={() => this.handleReservation()}
             title={"Search"}
@@ -89,5 +92,22 @@ class Reservation extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  formRow: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    flexDirection: "row",
+    margin: 20,
+  },
+  formLabel: {
+    fontSize: 18,
+    flex: 2,
+  },
+  formItem: {
+    flex: 1,
+  },
+});
 
 export default Reservation;
