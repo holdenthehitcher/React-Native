@@ -41,7 +41,7 @@ function RenderCampsite(props) {
             color="#5637dd"
             raised
             reverse
-            onPress={props.onShowModal}
+            onPress={() => props.onShowModal()}
           />
         </View>
       </Card>
@@ -58,7 +58,7 @@ function RenderComments({ comments }) {
         <Rating
           startingValue={item.rating}
           imageSize={10}
-          style={{ fontSize: 12, alignItems: "flex-start", paddingVertical: "5%" }}
+          style={{ alignItems: "flex-start", paddingVertical: "5%" }}
           readonly
         />
         <Text style={{ fontSize: 12 }}>{`-- ${item.author}, ${item.date}`}</Text>
@@ -84,9 +84,9 @@ class CampsiteInfo extends Component {
     };
   }
 
-  toggleModal = () => {
+  toggleModal() {
     this.setState({ showModal: !this.state.showModal });
-  };
+  }
 
   handleComment(campsiteId) {
     const { rating, author, text } = this.state;
@@ -136,20 +136,20 @@ class CampsiteInfo extends Component {
               readonly
               showRating
               startingValue={this.state.rating}
-              imageSize="40"
+              imageSize={40}
               onFinishRating={(rating) => this.setState({ rating: rating })}
               style={{ paddingVertical: 10 }}
             />
             <Input
               placeholder="Author"
-              leftIcon="user-o"
+              leftIcon={{ type: "font-awesome", name: "user-o" }}
               leftIconContainerStyle={{ paddingRight: 10 }}
               onChangeText={(author) => this.setState({ author: author })}
               value={this.state.author}
             />
             <Input
               placeholder="Comment"
-              leftIcon="comment-o"
+              leftIcon={{ type: "font-awesome", name: "comment-o" }}
               leftIconContainerStyle={{ paddingRight: 10 }}
               onChangeText={(text) => this.setState({ text: text })}
               value={this.state.text}
@@ -170,7 +170,6 @@ class CampsiteInfo extends Component {
               </View>
             </View>
           </View>
-          <View style={{ margin: 10 }}></View>
         </Modal>
       </ScrollView>
     );

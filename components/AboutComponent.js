@@ -53,7 +53,7 @@ class About extends Component {
     }
     if (this.props.partners.errMess) {
       return (
-        <ScrollView>
+        <ScrollView>{e}
           <Mission />
           <Card title={"Community Partners"}>
             <Text>{this.props.partners.errMess}</Text>
