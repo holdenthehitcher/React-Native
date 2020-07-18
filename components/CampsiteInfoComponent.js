@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PanResponder, Text, View, ScrollView, FlatList, Modal, StyleSheet, Button } from "react-native";
+import { PanResponder, Text, View, ScrollView, FlatList, Modal, StyleSheet, Button, Alert } from "react-native";
 import { Card, Icon, Input, Rating } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
