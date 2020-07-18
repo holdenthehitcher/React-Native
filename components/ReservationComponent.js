@@ -20,9 +20,29 @@ class Reservation extends Component {
   };
 
   handleReservation() {
-    console.log(JSON.stringify(this.state));
+    Alert.alert(
+      "Begin Search?",
+      `Number of Campers: ${this.state.campers}
+      Hike-In?: ${this.state.hikeIn}
+      Date: ${this.state.date}
+      `,
+      [
+        {
+          text: "Cancel",
+          onPress: () => resetForm(),
+          style: " cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => resetForm(),
+        },
+      ],
+      { cancelable: false }
+    );
+
     this.toggleModal();
   }
+
   resetForm() {
     this.setState({
       campers: 1,
@@ -98,6 +118,8 @@ class Reservation extends Component {
             accessibilityLabel="Tap me to search for available campsites to reserve"
           />
         </View>
+
+        {/*
         <Modal
           animationType={"slide"}
           transparent={false}
@@ -119,6 +141,7 @@ class Reservation extends Component {
             />
           </View>
         </Modal>
+            */}
       </Animatable.View>
     );
   }
