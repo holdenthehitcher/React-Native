@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { fetchCampsites, fetchComments, fetchPromotions, fetchPartners } from "../redux/ActionCreators";
 import Favorites from "./FavoritesComponent";
 
+import Login from "./LoginComponent";
 import Reservation from "./ReservationComponent";
 import Directory from "./DirectoryComponent";
 import CampsiteInfo from "./CampsiteInfoComponent";
@@ -159,6 +160,31 @@ const FavoritesNavigator = createStackNavigator(
   }
 );
 
+const LoginNavigator = createStackNavigator(
+  {
+    Login: { screen: Login },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerLeft: (
+        <Icon
+          name="sign-in"
+          type="font-awesome"
+          iconStyle={styles.stackIcon}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+    }),
+  }
+);
+
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
     <SafeAreaView style={styles.containter} foreInset={{ top: "always", horizontal: "never" }}>
@@ -177,6 +203,12 @@ const CustomDrawerContentComponent = (props) => (
 
 const MainNavigator = createDrawerNavigator(
   {
+    Login: {
+      screen: LoginNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => <Icon name="sign-in" type="font-awesome" size={24} color={tintColor} />,
+      },
+    },
     Home: {
       screen: HomeNavigator,
       navigationOptions: {
@@ -219,6 +251,7 @@ const MainNavigator = createDrawerNavigator(
     },
   },
   {
+    initialRouteName: 'Home',
     drawerBackgroundColor: "#cec8ff",
     contentComponent: CustomDrawerContentComponent,
   }
